@@ -7,6 +7,22 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
+      resolve: `gatsby-plugin-postcss`,
+      options: {
+        postCssPlugins: [
+          require(`tailwindcss`)
+        ]
+      }
+    },
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        postCssPlugins: [
+          require("tailwindcss"),
+        ]
+      }
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
@@ -25,6 +41,17 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-source-prismic`,
+      options: {
+        repositoryName: `stick-it-good-test`,
+        accessToken: `MC5YMFNVVEJJQUFBX05kQ2xs.77-9PQPvv71KFSbvv71-77-977-977-977-9Ju-_vX5QPO-_vQPvv73vv73vv71Q77-9YVLvv70cW--_ve-_vQ`,
+        schemas: {
+          homepage: require('./src/schemas/homepage.json'),
+          product: require('./src/schemas/product.json'),
+        },
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
