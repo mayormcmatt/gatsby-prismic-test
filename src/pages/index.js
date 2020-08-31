@@ -3,7 +3,7 @@ import { Link, graphql, useStaticQuery } from "gatsby"
 // import { graphql, useStaticQuery } from 'gatsby'
 
 import Layout from "../components/layout"
-import Image from "../components/image"
+// import Image from "../components/image"
 import SEO from "../components/seo"
 
 const IndexPage = () => {
@@ -13,11 +13,15 @@ const IndexPage = () => {
         edges {
           node {
             id
+            uid
             data {
               productname {
                 text
               }
               productdescription {
+                text
+              }
+              productprice {
                 text
               }
               productimage {
@@ -34,26 +38,22 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO title="Home" />
-      <ul>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {content.allPrismicProduct.edges.map((edge) => {
+          const productPath = `/product/${edge.node.uid}`
+
           return (
-            <li key={edge.node.id}>
-              <img src="" alt=""/>
-              <h2>{edge.node.data.productname.text}</h2>
-              <p>{edge.node.data.productdescription.text}</p>
-            </li>
+            <Link to={productPath}>
+              <li key={edge.node.id}>
+                <img src={edge.node.data.productimage.url} alt=""/>
+                <h2>{edge.node.data.productname.text}</h2>
+                <p>{edge.node.data.productprice.text}</p>
+                <p>{edge.node.data.productdescription.text}</p>
+              </li>
+            </Link>
           )
         })}
       </ul>
-
-
-      {/* <h1>Hi people</h1>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
-      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-        <Image />
-      </div> */}
-      <Link to="/page-2/">Go to page 2</Link> <br />
     </Layout>
   )
 }

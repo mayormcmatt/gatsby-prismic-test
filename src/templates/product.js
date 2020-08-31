@@ -13,6 +13,13 @@ export const query = graphql`
         productdescription {
           text
         }
+        productprice {
+          text
+        }
+        productimage {
+          url
+          alt
+        }
       }
     }
   }
@@ -21,7 +28,19 @@ export const query = graphql`
 const Product = (props) => {
   return (
     <Layout>
-      <h1>{props.data.prismicProduct.data.productname.text}</h1>
+      <div className="flex justify-between">
+        <h2>{props.data.prismicProduct.data.productname.text}</h2>
+        <h2>{props.data.prismicProduct.data.productprice.text}</h2>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2">
+        <img src={props.data.prismicProduct.data.productimage.url} alt=""/>
+
+        <div>
+          <h4>Product Details</h4>
+          <p>{props.data.prismicProduct.data.productdescription.text}</p>
+        </div>
+      </div>
     </Layout>
   )
 }
