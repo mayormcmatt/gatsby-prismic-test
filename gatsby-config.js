@@ -10,7 +10,7 @@ module.exports = {
       resolve: `gatsby-plugin-postcss`,
       options: {
         postCssPlugins: [
-          require(`tailwindcss`)
+          require(`tailwindcss`),
         ]
       }
     },
@@ -51,6 +51,7 @@ module.exports = {
         schemas: {
           homepage: require('./src/schemas/homepage.json'),
           product: require('./src/schemas/product.json'),
+          generalImage: require('./src/schemas/generalImage.json'),
         },
       },
     },

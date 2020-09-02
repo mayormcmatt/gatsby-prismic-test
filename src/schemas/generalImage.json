@@ -1,0 +1,19 @@
+{
+  "Main" : {
+    "uid" : {
+      "type" : "UID",
+      "config" : {
+        "label" : "imageId",
+        "placeholder" : "Enter hyphen-separated ID here"
+      }
+    },
+    "image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : { },
+        "thumbnails" : [ ],
+        "label" : "image"
+      }
+    }
+  }
+}

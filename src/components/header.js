@@ -1,35 +1,45 @@
-import { Link } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
-)
+const Header = () => {
+  const logo = useStaticQuery(graphql`
+    query {
+      prismicGeneralimage (
+        uid: {
+          eq: "stick-it-logo-main"
+        }
+      ) {
+        data {
+          image {
+            url
+            alt
+          }
+        }
+      }
+    }
+  `)
+
+  return (
+    <header>
+      <nav className="container flex mx-auto p-2 border-b-4 border-blue-500">
+        <img
+          src={logo.prismicGeneralimage.data.image.url}
+          alt={logo.prismicGeneralimage.data.image.alt}
+          className="w-10 mx-4"
+        />
+
+        <h1
+          style={{ margin: 0 }}
+          className="font-display">
+          <Link to="/">
+            Stick It Good!
+          </Link>
+        </h1>
+      </nav>
+    </header>
+  )
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
