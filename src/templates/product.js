@@ -2,6 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 
 import Layout from '../components/layout'
+import ProductPageSeo from '../components/productPageSeo'
 
 export const query = graphql`
   query($slug: String!) {
@@ -26,9 +27,9 @@ export const query = graphql`
 `
 
 const Product = (props) => {
-  console.log(props.data)
   return (
     <Layout>
+      <ProductPageSeo productData={props} />
       <div className="flex justify-between my-4">
         <h2 className="font-sans font-semibold">{props.data.prismicProduct.data.productname.text}</h2>
         <h2>{props.data.prismicProduct.data.productprice.text}</h2>
