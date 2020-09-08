@@ -22,7 +22,7 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="container flex mx-auto p-2 border-b-4 border-blue-500">
+      <nav className="container flex mx-auto p-2 border-b-4 border-blue-500 dark:bg-gray-800">
         <img
           src={logo.prismicGeneralimage.data.image.url}
           alt={logo.prismicGeneralimage.data.image.alt}
@@ -31,7 +31,7 @@ const Header = () => {
 
         <h1
           style={{ margin: 0 }}
-          className="font-display">
+          className="font-display dark:text-white">
           <Link to="/">
             Stick It Good!
           </Link>

@@ -1,8 +1,8 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from '../components/layout'
-import ProductPageSeo from '../components/productPageSeo'
+import SEO from "../components/seo"
 
 export const query = graphql`
   query($slug: String!) {
@@ -29,7 +29,10 @@ export const query = graphql`
 const Product = (props) => {
   return (
     <Layout>
-      <ProductPageSeo productData={props} />
+      <SEO
+        title={props.data.prismicProduct.data.productname.text}
+        description={props.data.prismicProduct.data.productdescription.text}
+      />
       <div className="flex justify-between my-4">
         <h2 className="font-sans font-semibold">{props.data.prismicProduct.data.productname.text}</h2>
         <h2>{props.data.prismicProduct.data.productprice.text}</h2>
